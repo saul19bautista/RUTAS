@@ -2,9 +2,11 @@
   <div id="app">
     <div class="container-fluid">
       <!-- Barra de navegación responsiva -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container-fluid">
-          <router-link class="navbar-brand" to="/" style="font-size: 1.2rem; font-weight: bold; color: #007bff;">Navbar</router-link>
+          <router-link class="navbar-brand" to="/" style="font-size: 1.4rem; font-weight: bold; color: #0d6efd;">
+            📌 Saúl López Bautista
+          </router-link>
           <button
             class="navbar-toggler"
             type="button"
@@ -20,31 +22,53 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <router-link class="nav-link" to="/" style="font-size: 1rem; color: #007bff;">🏠 Home</router-link>
+                <router-link class="nav-link menu-link" to="/">🏠 Inicio</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" to="/about" style="font-size: 1rem; color: #007bff;">📚 About</router-link>
+                <router-link class="nav-link menu-link" to="/about">📚 Acerca de</router-link>
+              </li>
+
+              <!-- Submenú Calculadoras -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle menu-link" href="#" id="calculadoraDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  🧮 Calculadoras
+                </a>
+                <ul class="dropdown-menu animate__animated animate__fadeIn" aria-labelledby="calculadoraDropdown">
+                  <li>
+                    <router-link class="dropdown-item submenu-link" to="/calculadora">🟢 Calculadora V1</router-link>
+                  </li>
+                  <li>
+                    <router-link class="dropdown-item submenu-link" to="/calculadora2">🔵 Calculadora V2</router-link>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Submenú Horarios -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle menu-link" href="#" id="horarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  📅 Horarios
+                </a>
+                <ul class="dropdown-menu animate__animated animate__fadeIn" aria-labelledby="horarioDropdown">
+                  <li>
+                    <router-link class="dropdown-item submenu-link" to="/horariodo">👨‍🏫 Docente</router-link>
+                  </li>
+                  <li>
+                    <router-link class="dropdown-item submenu-link" to="/mihorariodo">👨‍🎓 Alumno</router-link>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <router-link class="nav-link menu-link" to="/eventos">🎉 Eventos</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" to="/calculadora" style="font-size: 1rem; color: #007bff;">🧮 CalculadoraV1</router-link>
+                <router-link class="nav-link menu-link" to="/midato">👤 Mis Datos</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" to="/calculadora2" style="font-size: 1rem; color: #007bff;">🧮 CalculadoraV2</router-link>
+                <router-link class="nav-link menu-link" to="/recorrido">🗺️ Recorrido</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" to="/eventos" style="font-size: 1rem; color: #007bff;">🎉 Eventos</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link" to="/horariodo" style="font-size: 1rem; color: #007bff;">📅 Horario Docente</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link" to="/mihorariodo" style="font-size: 1rem; color: #007bff;">📆 Horario Alumno</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link" to="/midato" style="font-size: 1rem; color: #007bff;">👤 Mis Datos</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link" to="/recorrido" style="font-size: 1rem; color: #007bff;">🗺️ Recorrido</router-link>
+                <a class="nav-link menu-link" href="#" @click.prevent="logout">🚪 Cerrar sesión</a>
               </li>
             </ul>
           </div>
@@ -60,33 +84,62 @@
 <script>
 export default {
   name: "App",
+  methods: {
+    logout() {
+      localStorage.removeItem("loggedIn");
+      this.$router.push("/login");
+    },
+  },
 };
 </script>
 
 <style scoped>
-/* Personalización de la barra de navegación */
-.navbar-nav {
-  padding-left: 0;
-}
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css";
 
 .navbar-nav .nav-item {
-  margin-right: 15px;
+  margin-right: 10px;
 }
 
-.navbar-nav .nav-link {
-  transition: all 0.3s ease; /* Transición suave para los enlaces */
-  padding: 0.5rem 1rem;
+.nav-link.menu-link {
   font-size: 1rem;
-  color: #007bff;
+  padding: 0.6rem 1.2rem;
+  color: #0d6efd;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  background-color: transparent;
 }
 
-.navbar-nav .nav-link:hover {
-  background-color: #e0f7fa; /* Color de fondo al pasar el ratón */
-  color: #01579b; /* Cambio de color de texto en hover */
-  border-radius: 4px; /* Bordes redondeados para los enlaces */
+.nav-link.menu-link:hover {
+  background-color: #e3f2fd;
+  color: #0a58ca;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(13, 110, 253, 0.15);
 }
 
-/* Estilo para el navbar en pantallas pequeñas */
+.nav-item.dropdown .dropdown-menu {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 0;
+  min-width: 220px;
+}
+
+.submenu-link {
+  padding: 0.5rem 1.2rem;
+  color: #0d6efd;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  border-radius: 8px;
+}
+
+.submenu-link:hover {
+  background-color: #d4edfc;
+  color: #063970;
+  padding-left: 1.6rem;
+}
+
 @media (max-width: 768px) {
   .navbar-nav {
     text-align: center;
@@ -94,7 +147,7 @@ export default {
   }
 
   .navbar-nav .nav-item {
-    margin-bottom: 10px; /* Espacio entre los elementos */
+    margin-bottom: 10px;
   }
 
   .navbar-toggler {
