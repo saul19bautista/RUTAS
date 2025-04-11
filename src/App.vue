@@ -68,6 +68,9 @@
                 <router-link class="nav-link menu-link" to="/recorrido">🗺️ Recorrido</router-link>
               </li>
               <li class="nav-item">
+                <router-link class="nav-link menu-link" to="/registrar">📝 Registrarse</router-link>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link menu-link" href="#" @click.prevent="logout">🚪 Cerrar sesión</a>
               </li>
             </ul>

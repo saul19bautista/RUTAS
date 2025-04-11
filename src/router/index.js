@@ -8,7 +8,8 @@ import Horariodo from '../Pages/HorarioDocente.vue'
 import HoraAlu from '../Pages/Horario.vue'
 import Mistados from '../Pages/Misdatos.vue'
 import Recorridos from '../Pages/Recorrido.vue'
-import Login from '../Pages/Login.vue' // nueva ruta
+import Login from '../Pages/Login.vue'
+import Registrar from '../Pages/Registrar.vue' // NUEVO
 
 const routes = [
   {
@@ -60,22 +61,17 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/registrar',
+    name: 'Registrar',
+    component: Registrar
   }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes
-})
-
-// protección de rutas
-router.beforeEach((to, from, next) => {
-  const loggedIn = localStorage.getItem('loggedIn')
-  if (to.path !== '/login' && !loggedIn) {
-    next('/login')
-  } else {
-    next()
-  }
 })
 
 export default router
